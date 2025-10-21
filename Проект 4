@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int user_num, answer;
+	cout << "Введите число: ";
+	cin >> user_num;
+
+	for (int i = 1; i <= user_num; ++i) {
+		cout << "Решите пример: " << user_num << "x" << i << " = ";
+		cin >> answer;
+
+		if (answer == user_num * i) {
+			cout << "Пример решен правильно!" << endl;
+		}
+		else {
+			cout << "Ошибка, пример решен неверно!" << endl;
+			return 0;
+		}
+	}
+	cout << "Примеры решены!" << endl;
+	return 0;
+}
