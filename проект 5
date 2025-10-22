@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double a, b, result;
+    char op;
+
+    cout << "Введите операцию (+, -, *, /, %): ";
+    cin >> op;
+
+    cout << "Введите первое число: ";
+    cin >> a;
+
+    cout << "Введите второе число: ";
+    cin >> b;
+
+    if (op == '+') {
+        result = a + b;
+        cout << "[+] Результат: " << a << " + " << b << " = " << result << endl;
+    }
+    else if (op == '-') {
+        result = a - b;
+        cout << "[-] Результат: " << a << " - " << b << " = " << result << endl;
+    }
+    else if (op == '*') {
+        result = a * b;
+        cout << "[*] Результат: " << a << " * " << b << " = " << result << endl;
+    }
+    else if (op == '/') {
+        if (b == 0) {
+            cout << "деление на 0 запрещено!" << endl;
+        }
+        else {
+            result = a / b;
+            cout << "[/] Результат: " << a << " / " << b << " = " << result << endl;
+        }
+    }
+    else if (op == '%') {
+        if (b == 0) {
+            cout << "деление на 0 запрещено!" << endl;
+        }
+        else {
+            if ((int)a == a && (int)b == b) {
+                int intResult = (int)a % (int)b;
+                cout << "[%] Результат: " << (int)a << " % " << (int)b << " = " << intResult << endl;
+            }
+            else {
+                cout << "операция % возможна только с целыми числами!" << endl;
+            }
+        }
+    }
+    else {
+        cout << "неизвестная операция!" << endl;
+    }
+
+    return 0;
