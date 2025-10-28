@@ -1,0 +1,108 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+    setlocale(0, "");
+
+    cout << "[1] Январь\n";
+
+    cout << "[2] Февраль\n";
+
+    cout << "[3] Март\n";
+
+    cout << "[4] Апрель\n";
+
+    cout << "[5] Май\n";
+
+    cout << "[6] Июнь\n";
+
+    cout << "[7] Июль\n";
+
+    cout << "[8] Август\n";
+
+    cout << "[9] Сентябрь\n";
+
+    cout << "[10] Октябрь\n";
+
+    cout << "[11] Ноябрь\n";
+
+    cout << "[12] Декабрь\n\n";
+
+
+
+    cout << "Выберите месяц: ";
+
+    int m;
+
+    if (!(cin >> m)) {
+
+        cout << "Ошибка ввода: введите целое число от 1 до 12!" << endl;
+
+        return 0;
+
+    }
+
+
+
+    switch (m) {
+
+    case 1:
+
+        cout << "Выбран месяц Январь" << endl; break;
+
+    case 2:
+
+        cout << "Выбран месяц Февраль" << endl; break;
+
+    case 3:
+
+        cout << "Выбран месяц Март" << endl; break;
+
+    case 4:
+
+        cout << "Выбран месяц Апрель" << endl; break;
+
+    case 5:
+
+        cout << "Выбран месяц Май" << endl; break;
+
+    case 6:
+
+        cout << "Выбран месяц Июнь" << endl; break;
+
+    case 7:
+
+        cout << "Выбран месяц Июль" << endl; break;
+
+    case 8:
+
+        cout << "Выбран месяц Август" << endl; break;
+
+    case 9:
+
+        cout << "Выбран месяц Сентябрь" << endl; break;
+
+    case 10:
+
+        cout << "Выбран месяц Октябрь" << endl; break;
+
+    case 11:
+
+        cout << "Выбран месяц Ноябрь" << endl; break;
+
+    case 12:
+
+        cout << "Выбран месяц Декабрь" << endl; break;
+
+    default:
+
+        cout << "Неправильно введен номер месяца!" << endl; break;
+    }
+
+
+    return 0;
+
+}
