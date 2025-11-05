@@ -1,0 +1,195 @@
+#include <iostream>
+
+#include <string>
+
+#include <clocale>
+
+
+
+int main() {
+
+    setlocale(LC_ALL, "");
+
+    int choice;
+
+
+
+    do {
+
+        std::cout << "\n[+] Переводчик\n\n";
+
+        std::cout << "[1] Русские слова\n";
+
+        std::cout << "[2] Английские слова\n";
+
+        std::cout << "[3] Выйти\n";
+
+        std::cout << "Выберите пункт: ";
+
+        if (!(std::cin >> choice)) {
+
+            std::cin.clear();
+
+            std::cin.ignore(10000, '\n');
+
+            choice = 0;
+
+        }
+
+
+
+        switch (choice) {
+
+        case 1: {
+
+            int n;
+
+            std::cout << "\n[+] Переводчик \"Список русских слов\"\n\n";
+
+            std::cout << "[1] Дом\n[2] Дорога\n[3] Книга\n[4] Машина\n[5] Солнце\n";
+
+            std::cout << "[6] Луна\n[7] Стол\n[8] Стул\n[9] Окно\n[10] Дверь\n";
+
+            std::cout << "[11] Река\n[12] Гора\n[13] Дерево\n[14] Цветок\n[15] Человек\n\n";
+
+            std::cout << "Выберите номер слова: ";
+
+            if (!(std::cin >> n)) {
+
+                std::cin.clear();
+
+                std::cin.ignore(10000, '\n');
+
+                n = 0;
+
+            }
+
+            std::cout << "[+] Перевод: ";
+
+            switch (n) {
+
+            case 1:  std::cout << "дом -> house\n"; break;
+
+            case 2:  std::cout << "дорога -> road\n"; break;
+
+            case 3:  std::cout << "книга -> book\n"; break;
+
+            case 4:  std::cout << "машина -> car\n"; break;
+
+            case 5:  std::cout << "солнце -> sun\n"; break;
+
+            case 6:  std::cout << "луна -> moon\n"; break;
+
+            case 7:  std::cout << "стол -> table\n"; break;
+
+            case 8:  std::cout << "стул -> chair\n"; break;
+
+            case 9:  std::cout << "окно -> window\n"; break;
+
+            case 10: std::cout << "дверь -> door\n"; break;
+
+            case 11: std::cout << "река -> river\n"; break;
+
+            case 12: std::cout << "гора -> mountain\n"; break;
+
+            case 13: std::cout << "дерево -> tree\n"; break;
+
+            case 14: std::cout << "цветок -> flower\n"; break;
+
+            case 15: std::cout << "человек -> person\n"; break;
+
+            default: std::cout << "Неверный номер\n"; break;
+
+            }
+
+            break;
+
+        }
+
+        case 2: {
+
+            int n;
+
+            std::cout << "\n[+] Переводчик \"Список английских слов\"\n\n";
+
+            std::cout << "[1] house\n[2] road\n[3] book\n[4] car\n[5] sun\n";
+
+            std::cout << "[6] moon\n[7] table\n[8] chair\n[9] window\n[10] door\n";
+
+            std::cout << "[11] river\n[12] mountain\n[13] tree\n[14] flower\n[15] person\n\n";
+
+            std::cout << "Выберите номер слова: ";
+
+            if (!(std::cin >> n)) {
+
+                std::cin.clear();
+
+                std::cin.ignore(10000, '\n');
+
+                n = 0;
+
+            }
+
+            std::cout << "[+] Перевод: ";
+
+            switch (n) {
+
+            case 1:  std::cout << "house -> дом\n"; break;
+
+            case 2:  std::cout << "road -> дорога\n"; break;
+
+            case 3:  std::cout << "book -> книга\n"; break;
+
+            case 4:  std::cout << "car -> машина\n"; break;
+
+            case 5:  std::cout << "sun -> солнце\n"; break;
+
+            case 6:  std::cout << "moon -> луна\n"; break;
+
+            case 7:  std::cout << "table -> стол\n"; break;
+
+            case 8:  std::cout << "chair -> стул\n"; break;
+
+            case 9:  std::cout << "window -> окно\n"; break;
+
+            case 10: std::cout << "door -> дверь\n"; break;
+
+            case 11: std::cout << "river -> река\n"; break;
+
+            case 12: std::cout << "mountain -> гора\n"; break;
+
+            case 13: std::cout << "tree -> дерево\n"; break;
+
+            case 14: std::cout << "flower -> цветок\n"; break;
+
+            case 15: std::cout << "person -> человек\n"; break;
+
+            default: std::cout << "Неверный номер\n"; break;
+
+            }
+
+            break;
+
+        }
+
+        case 3:
+
+            std::cout << "Выход...\n";
+
+            break;
+
+        default:
+
+            std::cout << "Неверный пункт меню. Попробуйте снова.\n";
+
+            break;
+
+        }
+
+    } while (choice != 3);
+
+
+
+    return 0;
+
+}
