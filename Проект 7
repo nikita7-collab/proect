@@ -1,0 +1,158 @@
+#include <iostream>
+
+#include <string>
+
+using namespace std;
+
+
+
+int main() {
+    setlocale(0, "");
+
+    cout << "Календарь\n";
+
+    cout << "1) Январь\n2) Февраль\n3) Март\n4) Апрель\n5) Май\n6) Июнь\n";
+
+    cout << "7) Июль\n8) Август\n9) Сентябрь\n10) Октябрь\n11) Ноябрь\n12) Декабрь\n";
+
+    cout << "Выберите месяц (номер): ";
+
+    int month;
+
+    if (!(cin >> month)) return 0;
+
+
+
+    string monthName;
+
+    int daysInMonth = 0;
+
+
+
+    switch (month) {
+
+    case 1: monthName = "января"; daysInMonth = 31; break;
+
+    case 2: monthName = "февраля"; daysInMonth = 28; break;
+
+    case 3: monthName = "марта"; daysInMonth = 31; break;
+
+    case 4: monthName = "апреля"; daysInMonth = 30; break;
+
+    case 5: monthName = "мая"; daysInMonth = 31; break;
+
+    case 6: monthName = "июня"; daysInMonth = 30; break;
+
+    case 7: monthName = "июля"; daysInMonth = 31; break;
+
+    case 8: monthName = "августа"; daysInMonth = 31; break;
+
+    case 9: monthName = "сентября"; daysInMonth = 30; break;
+
+    case 10: monthName = "октября"; daysInMonth = 31; break;
+
+    case 11: monthName = "ноября"; daysInMonth = 30; break;
+
+    case 12: monthName = "декабря"; daysInMonth = 31; break;
+
+    default:
+
+        cout << "Неверный номер месяца.\n";
+
+        return 0;
+
+    }
+
+
+
+    cout << "Выберите день месяца: ";
+
+    int day;
+
+    if (!(cin >> day)) return 0;
+
+
+
+    if (day < 1 || day > daysInMonth) {
+
+        cout << "Неверный день для выбранного месяца.\n";
+
+        return 0;
+
+    }
+
+
+    switch (day) {
+
+    case 1: cout << "Календарь: 1 " << monthName << ".\n"; break;
+
+    case 2: cout << "Календарь: 2 " << monthName << ".\n"; break;
+
+    case 3: cout << "Календарь: 3 " << monthName << ".\n"; break;
+
+    case 4: cout << "Календарь: 4 " << monthName << ".\n"; break;
+
+    case 5: cout << "Календарь: 5 " << monthName << ".\n"; break;
+
+    case 6: cout << "Календарь: 6 " << monthName << ".\n"; break;
+
+    case 7: cout << "Календарь: 7 " << monthName << ".\n"; break;
+
+    case 8: cout << "Календарь: 8 " << monthName << ".\n"; break;
+
+    case 9: cout << "Календарь: 9 " << monthName << ".\n"; break;
+
+    case 10: cout << "Календарь: 10 " << monthName << ".\n"; break;
+
+    case 11: cout << "Календарь: 11 " << monthName << ".\n"; break;
+
+    case 12: cout << "Календарь: 12 " << monthName << ".\n"; break;
+
+    case 13: cout << "Календарь: 13 " << monthName << ".\n"; break;
+
+    case 14: cout << "Календарь: 14 " << monthName << ".\n"; break;
+
+    case 15: cout << "Календарь: 15 " << monthName << ".\n"; break;
+
+    case 16: cout << "Календарь: 16 " << monthName << ".\n"; break;
+
+    case 17: cout << "Календарь: 17 " << monthName << ".\n"; break;
+
+    case 18: cout << "Календарь: 18 " << monthName << ".\n"; break;
+
+    case 19: cout << "Календарь: 19 " << monthName << ".\n"; break;
+
+    case 20: cout << "Календарь: 20 " << monthName << ".\n"; break;
+
+    case 21: cout << "Календарь: 21 " << monthName << ".\n"; break;
+
+    case 22: cout << "Календарь: 22 " << monthName << ".\n"; break;
+
+    case 23: cout << "Календарь: 23 " << monthName << ".\n"; break;
+
+    case 24: cout << "Календарь: 24 " << monthName << ".\n"; break;
+
+    case 25: cout << "Календарь: 25 " << monthName << ".\n"; break;
+
+    case 26: cout << "Календарь: 26 " << monthName << ".\n"; break;
+
+    case 27: cout << "Календарь: 27 " << monthName << ".\n"; break;
+
+    case 28: cout << "Календарь: 28 " << monthName << ".\n"; break;
+
+    case 29: cout << "Календарь: 29 " << monthName << ".\n"; break;
+
+    case 30: cout << "Календарь: 30 " << monthName << ".\n"; break;
+
+    case 31: cout << "Календарь: 31 " << monthName << ".\n"; break;
+
+    default:
+
+        cout << "Ошибка.\n";
+
+    }
+
+
+
+    return 0;
+}
