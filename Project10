@@ -1,0 +1,109 @@
+#include <iostream>
+#include <set>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <string>
+
+void start_game() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::vector<int> numbers(10);
+    for (int i = 0; i < 10; ++i) {
+        numbers[i] = i + 1;
+    }
+    std::shuffle(numbers.begin(), numbers.end(), gen);
+    std::set<int> targets(numbers.begin(), numbers.begin() + 3);
+
+    std::set<int> guessed;
+    int attempts = 5;
+
+    while (attempts > 0 && guessed.size() < 3) {
+        std::cout << "\nУгадано чисел: [" << guessed.size() << " / 3]" << std::endl;
+        std::cout << "Осталось попыток: [" << attempts << "]" << std::endl;
+        std::cout << "Введите число от 1 до 10 (или 'q' для выхода в меню): ";
+        std::string user_input;
+        std::getline(std::cin, user_input);
+
+        user_input.erase(0, user_input.find_first_not_of(" \t\n\r"));
+        user_input.erase(user_input.find_last_not_of(" \t\n\r") + 1);
+
+        if (user_input == "q" || user_input == "Q") {
+            std::cout << "Возврат в меню." << std::endl;
+            break;
+        }
+
+      
+        int num;
+        try {
+            num = std::stoi(user_input);
+        } catch (...) {
+            std::cout << "Неверный ввод. Введите целое число от 1 до 10." << std::endl;
+            continue;
+        }
+
+       
+        if (num < 1 || num > 10) {
+            std::cout << "Число вне диапазона 1..10." << std::endl;
+            continue;
+        }
+
+       
+        if (guessed.find(num) != guessed.end()) {
+            std::cout << "Вы уже угадали это число ранее." << std::endl;
+            continue; // не тратить попытку на повторный ввод
+        }
+
+       
+        if (targets.find(num) != targets.end()) {
+            guessed.insert(num);
+            std::cout << "[+] Число угадано! (" << num << ")" << std::endl;
+        } else {
+            std::cout << "[-] Число не угадано." << std::endl;
+        }
+
+        --attempts;
+    }
+
+ 
+    if (guessed.size() == 3) {
+        std::cout << "\nПоздравляем! Вы угадали все три числа!" << std::endl;
+    } else {
+        std::cout << "\nИгра окончена. Вы угадали " << guessed.size() << " из 3 чисел." << std::endl;
+        std::cout << "Загаданные числа были: ";
+        std::vector<int> sorted_targets(targets.begin(), targets.end());
+        std::sort(sorted_targets.begin(), sorted_targets.end());
+        for (size_t i = 0; i < sorted_targets.size(); ++i) {
+            std::cout << sorted_targets[i];
+            if (i != sorted_targets.size() - 1) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+void main_menu() {
+    while (true) {
+        std::cout << "\n--- Меню ---" << std::endl;
+        std::cout << "1. Начать игру" << std::endl;
+        std::cout << "2. Выйти" << std::endl;
+        std::cout << "Выберите пункт (1/2): ";
+        std::string choice;
+        std::getline(std::cin, choice);
+
+        if (choice == "1") {
+            start_game();
+        } else if (choice == "2") {
+            std::cout << "Выход из приложения." << std::endl;
+            break;
+        } else {
+            std::cout << "Неверный выбор. Введите 1 или 2." << std::endl;
+        }
+    }
+}
+
+int main() {
+    main_menu();
+    return 0;
+}
