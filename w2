@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int n;
+
+cout << "Введите число: ";
+cin >> n;
+
+while (n >= 1) {
+cout << "Отсчет: " << n << endl;
+n--;
+}
+
+cout << "Старт!" << endl;
+return 0;
+}
