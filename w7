@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+string password, correct = "12345";
+
+cout << "Введите пароль: ";
+cin >> password;
+
+while (password != correct) {
+cout << "Неверный пароль!" << endl;
+cout << "Введите пароль: ";
+cin >> password;
+}
+
+cout << "Добро пожаловать!" << endl;
+return 0;
+}
