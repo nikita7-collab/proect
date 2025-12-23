@@ -1,0 +1,242 @@
+#include <iostream>
+#include <string>
+#include <limits>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <cstdlib>
+#endif
+
+using namespace std;
+
+// Функция для очистки консоли
+void clearConsole() {
+    #ifdef _WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
+}
+
+// Функция для паузы (ожидание нажатия Enter)
+void pauseConsole() {
+    cout << "Нажмите Enter чтобы продолжить...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+}
+
+// Функция для рисования линии
+void drawLine(int length, char symbol, bool filled) {
+    if (filled) {
+        for (int i = 0; i < length; i++) {
+            cout << symbol;
+        }
+        cout << endl;
+    } else {
+        if (length == 1) {
+            cout << symbol << endl;
+        } else {
+            cout << symbol;
+            for (int i = 0; i < length - 2; i++) {
+                cout << ' ';
+            }
+            cout << symbol << endl;
+        }
+    }
+}
+
+// Функция для рисования квадрата
+void drawSquare(int size, char symbol, bool filled) {
+    if (filled) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                cout << symbol;
+            }
+            cout << endl;
+        }
+    } else {
+        for (int i = 0; i < size; i++) {
+            if (i == 0 || i == size - 1) {
+                for (int j = 0; j < size; j++) {
+                    cout << symbol;
+                }
+            } else {
+                cout << symbol;
+                for (int j = 0; j < size - 2; j++) {
+                    cout << ' ';
+                }
+                cout << symbol;
+            }
+            cout << endl;
+        }
+    }
+}
+
+// Функция для рисования прямоугольника
+void drawRectangle(int width, int height, char symbol, bool filled) {
+    if (filled) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                cout << symbol;
+            }
+            cout << endl;
+        }
+    } else {
+        for (int i = 0; i < height; i++) {
+            if (i == 0 || i == height - 1) {
+                for (int j = 0; j < width; j++) {
+                    cout << symbol;
+                }
+            } else {
+                cout << symbol;
+                for (int j = 0; j < width - 2; j++) {
+                    cout << ' ';
+                }
+                cout << symbol;
+            }
+            cout << endl;
+        }
+    }
+}
+
+int main() {
+    // Установка кодировки для корректного отображения русских букв (Windows)
+    #ifdef _WIN32
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    #endif
+    
+    int choice;
+    bool exitProgram = false;
+    
+    while (!exitProgram) {
+        clearConsole();
+        cout << "[+] Программа \"Геометрические фигуры\"\n" << endl;
+        cout << "[1] Линия" << endl;
+        cout << "[2] Квадрат" << endl;
+        cout << "[3] Прямоугольник" << endl;
+        cout << "[0] Выход\n" << endl;
+        
+        cout << "[+] Выберите фигуру: ";
+        cin >> choice;
+        
+        // Проверка на корректный ввод
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка! Введите число от 0 до 3." << endl;
+            pauseConsole();
+            continue;
+        }
+        
+        if (choice == 0) {
+            cout << "Выход из программы." << endl;
+            break;
+        }
+        
+        if (choice < 1 || choice > 3) {
+            cout << "Ошибка! Введите число от 0 до 3." << endl;
+            pauseConsole();
+            continue;
+        }
+        
+        clearConsole();
+        
+        // Название фигуры
+        string figureName;
+        switch (choice) {
+            case 1: figureName = "Линия"; break;
+            case 2: figureName = "Квадрат"; break;
+            case 3: figureName = "Прямоугольник"; break;
+        }
+        
+        cout << "[+] Фигура: \"" << figureName << "\"\n" << endl;
+        cout << "[1] Заполненный" << endl;
+        cout << "[2] Пустой\n" << endl;
+        
+        int typeChoice;
+        cout << "[+] Выберите тип: ";
+        cin >> typeChoice;
+        
+        if (typeChoice < 1 || typeChoice > 2) {
+            cout << "Ошибка! Введите 1 или 2." << endl;
+            pauseConsole();
+            continue;
+        }
+        
+        bool filled = (typeChoice == 1);
+        
+        clearConsole();
+        cout << "[+] Фигура: \"" << figureName << "\" (";
+        cout << (filled ? "Заполненный" : "Пустой") << ")\n" << endl;
+        
+        // Ввод параметров
+        try {
+            if (choice == 1) {  // Линия
+                int length;
+                cout << "[+] Длина: ";
+                cin >> length;
+                
+                if (cin.fail() || length <= 0) {
+                    throw "Длина должна быть положительным числом!";
+                }
+                
+                char symbol;
+                cout << "[+] Текстура: ";
+                cin >> symbol;
+                
+                clearConsole();
+                cout << "[+] Результат:\n" << endl;
+                drawLine(length, symbol, filled);
+                
+            } else if (choice == 2) {  // Квадрат
+                int size;
+                cout << "[+] Размер: ";
+                cin >> size;
+                
+                if (cin.fail() || size <= 0) {
+                    throw "Размер должен быть положительным числом!";
+                }
+                
+                char symbol;
+                cout << "[+] Текстура: ";
+                cin >> symbol;
+                
+                clearConsole();
+                cout << "[+] Результат:\n" << endl;
+                drawSquare(size, symbol, filled);
+                
+            } else if (choice == 3) {  // Прямоугольник
+                int width, height;
+                cout << "[+] Ширина: ";
+                cin >> width;
+                cout << "[+] Высота: ";
+                cin >> height;
+                
+                if (cin.fail() || width <= 0 || height <= 0) {
+                    throw "Ширина и высота должны быть положительными числами!";
+                }
+                
+                char symbol;
+                cout << "[+] Текстура: ";
+                cin >> symbol;
+                
+                clearConsole();
+                cout << "[+] Результат:\n" << endl;
+                drawRectangle(width, height, symbol, filled);
+            }
+            
+        } catch (const char* errorMessage) {
+            cout << "Ошибка: " << errorMessage << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            pauseConsole();
+            continue;
+        }
+        
+        cout << endl;
+        pauseConsole();
+    }
+    
+    return 0;
+}
