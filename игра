@@ -57,12 +57,12 @@ int main() {
         {1,1,1,1,1,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,1},
+        {1,0,2,2,0,0,0,0,0,1},
+        {1,0,2,2,0,0,0,0,0,1},
         {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,2,2,2,0,0,1},
-        {1,0,0,0,2,2,2,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,2,2,0,1},
+        {1,0,2,2,0,0,2,2,0,1},
+        {1,0,2,2,0,0,0,0,0,1},
         {1,1,1,1,1,1,1,1,1,1},
     };
 
@@ -77,18 +77,18 @@ int main() {
         int ny = player.y;
 
         switch (_getch()) {
-            case 'w': ny--; break;
-            case 's': ny++; break;
-            case 'a': nx--; break;
-            case 'd': nx++; break;
-            case 'q':
-                system("cls");
-                cout << "Pока!" << endl;
-                cursor.bVisible = true;
-                SetConsoleCursorInfo(hHandle, &cursor);
-                return 0;
-            default:
-                continue;
+        case 'w': ny--; break;
+        case 's': ny++; break;
+        case 'a': nx--; break;
+        case 'd': nx++; break;
+        case 'q':
+            system("cls");
+            cout << "Pока!" << endl;
+            cursor.bVisible = true;
+            SetConsoleCursorInfo(hHandle, &cursor);
+            return 0;
+        default:
+            continue;
         }
 
         int cell = map[ny][nx];
