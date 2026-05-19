@@ -1,0 +1,125 @@
+#include <iostream>
+#include <Windows.h>
+#include <conio.h>
+using namespace std;
+
+struct Player {
+    short x;
+    short y;
+    char texture;
+};
+
+void renderMap(int map[][10], Player player) {
+    for (int y = 0; y < 10; y++) {
+        for (int x = 0; x < 10; x++) {
+            if (player.x == x && player.y == y) {
+                std::cout << "\x1b[96m" << player.texture << "\x1b[0m" << " ";
+            }
+            else if (map[y][x] == 1) {
+                std::cout << "\x1b[90m# \x1b[0m";
+            }
+            else if (map[y][x] == 2) {
+                std::cout << "\x1b[94m= \x1b[0m";
+            }
+            else {
+                std::cout << "  ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+void gotoxy(int x, int y) {
+    COORD coords;
+    coords.X = x;
+    coords.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coords);
+}
+
+int main() {
+    setlocale(0, "");
+    HANDLE hHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursor;
+    GetConsoleCursorInfo(hHandle, &cursor);
+    cursor.bVisible = false;
+    SetConsoleCursorInfo(hHandle, &cursor);
+
+    // Начальные значения игрока — сохраняем, чтобы откатывать при рестарте
+    const short startX = 4;
+    const short startY = 2;
+
+    Player player;
+    player.x = startX;
+    player.y = startY;
+    player.texture = 'P';
+
+    int map[10][10]{
+        {1,1,1,1,1,1,1,1,1,1},
+        {1,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,2,2,2,0,0,1},
+        {1,0,0,0,2,2,2,0,0,1},
+        {1,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,1},
+        {1,1,1,1,1,1,1,1,1,1},
+    };
+
+    system("cls");
+
+    while (true) {
+        gotoxy(0, 0);
+        renderMap(map, player);
+
+        // Куда игрок хочет шагнуть
+        int nx = player.x;
+        int ny = player.y;
+
+        switch (_getch()) {
+            case 'w': ny--; break;
+            case 's': ny++; break;
+            case 'a': nx--; break;
+            case 'd': nx++; break;
+            case 'q':
+                system("cls");
+                cout << "Pока!" << endl;
+                cursor.bVisible = true;
+                SetConsoleCursorInfo(hHandle, &cursor);
+                return 0;
+            default:
+                continue;
+        }
+
+        int cell = map[ny][nx];
+
+        // Стена — стоим на месте
+        if (cell == 1) {
+            continue;
+        }
+
+        // Вода — игрок утонул, рестарт
+        if (cell == 2) {
+            player.x = nx;
+            player.y = ny;
+            system("cls");
+            gotoxy(0, 0);
+            renderMap(map, player);
+            cout << "\n\x1b[91mIgrok utonul!\x1b[0m" << endl;
+            cout << "Nazhmite lyubuyu klavishu, chtoby nachat zanovo..." << endl;
+            _getch();
+
+            // Сброс на стартовую позицию
+            player.x = startX;
+            player.y = startY;
+            system("cls");
+            continue;
+        }
+
+        // Обычная клетка — шагаем
+        player.x = nx;
+        player.y = ny;
+    }
+
+    return 0;
+}
